@@ -19,7 +19,7 @@
         |-templates/
             |-auth/
                 |-login.html
-                |-register.html
+                |-signup.html
             |-email/
                 |-welcome_user.html
                 |-welcome_user.txt
@@ -28,14 +28,14 @@
                 |-update.html
             |-base.html
             |-comments.html
-            |-errors.html
+            |-fourOwfour.html
             |-post.html
             |-index.html
             |-downvote.html
             |-upvote.html
             |-macros.html
             |-navbar.html
-            |-new_pitch.html
+            |-new_post.html
         |-__init__.py
         |-email.py
         |-models.py
