@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block styles %}
+{{super()}}
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Lora&family=Nunito:wght@200&family=Quicksand&family=Roboto&family=Roboto+Slab:wght@300;400&family=Zen+Antique&display=swap"
+    rel="stylesheet">
+{% endblock %}
+{% block content %}
+<div class="container-fluid login-section">
+    <div class="row">
+        <div class='col-lg-4 col-md-6 col-sm-6'>
+            <form class="form-signin login-form" method="POST" action="/login">
+                <h3 class="form-signin-heading header">Login</h3>
+                {{ form.hidden_tag() }}
+                {{ wtf.form_field(form.username) }}
+                {{ wtf.form_field(form.password) }}
+
+                <button class="btn btn-lg btn-dark btn-block" type="submit">Login</button>
+            </form>
+        </div>
+        <div class='col-lg-8 col-md-6 col-sm-6'>
+            <img class="login-pic"
+                src="https://images.pexels.com/photos/1229861/pexels-photo-1229861.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260"
+                alt="">
+        </div>
+    </div>
+</div>
+
+{% endblock %}
