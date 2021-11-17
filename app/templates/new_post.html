@@ -1,0 +1,37 @@
+{% extends 'base.html'%}
+
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block content %}
+
+<div class="container">
+  <br>
+  <img src="https://pngimage.net/wp-content/uploads/2018/05/decorative-horizontal-line-png-3.png" height="100%"
+    width="100%">
+  <br>
+
+  <div class="row">
+    <div class="col-md-3" style="align-content:right"><img
+        src="https://course_report_production.s3.amazonaws.com/rich/rich_files/rich_files/566/s200/10710615-512708608864666-6379526937469666187-n.png"
+        height="160px" width="200px">
+    </div>
+    <div class="col-md-7">
+      {{ wtf.quick_form(pitch_form) }}
+    </div>
+    <div class="col-md-2"></div>
+   
+  </div>
+  <br>
+  <hr>
+</div>
+<!-- Footer -->
+<footer class="page-footer font-small light-green darken-2">
+
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3">© 2021 Copyright: CODIT
+  </div>
+  <!-- Copyright -->
+
+</footer>
+<!-- Footer -->
+{% endblock %}
