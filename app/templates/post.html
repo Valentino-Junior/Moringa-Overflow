@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2"></div>
+            {% for post in posts %}
+    <div class="col-md-8">
+        <div class="card">
+          
+            <!--Card content-->
+            <div class="card-body">
+              <h1>{{post.title}}</h1>
+              <!--Section: Pricing v.2-->
+<section class="pb-3">
+  
+    <!--Grid row-->
+    <div class="row">
+      <!--Grid column-->
+      <div class="col-lg-4 col-md-12 mb-4">
+  
+        <!-- Card -->
+        <div class="card card-image" style="background-image: url('https://mdbootstrap.com/img/Photos/Others/pricing-table%20(6).jpg');">
+  
+          <!--Pricing card-->
+          <div class="text-white text-center pricing-card d-flex align-items-center rgba-stylish-strong py-3 px-3">
+  
+            <!--Content-->
+            <div class="card-body">
+                <h2 class="pb-3 font-weight-bold">Description</h2>
+                <p align="justify">{{post.description}}</p>
+                <a class="white-text" href="{{url_for('main.star',post_id = post.id)}}"><i class="far fa-star"></i> Stars {{post.stars.count()}} </a></li>
+                <a href="{{url_for('main.new_comment',post_id = post.id)}}" class="btn btn-green darken-2"> Add a comment</a>
+            </div>
+  
+          </div>
+          <!--Pricing card-->
+        </div>
+      </div>
+      <!--Grid column-->
+  
+      <!--Grid column-->
+      <div class="col-lg-4 col-md-12 mb-4">
+  
+        <!-- Card -->
+        <div class="card card-image" style="background-image: url('https://mdbootstrap.com/img/Photos/Others/pricing-table%20(4).jpg');">
+  
+          <!--Pricing card-->
+          <div class="text-white text-center pricing-card d-flex align-items-center rgba-indigo-strong py-3 px-3">
+  
+            <!--Content-->
+            <div class="card-body">
+              <h2 class="pb-3 font-weight-bold">Group Members</h2>
+                  <p align="justify">{{post.owners}}</p>
+            </div>
+  
+          </div>
+          <!--Pricing card-->
+        </div>
+      </div>
+      <!--Grid column-->
+  
+      <!--Grid column-->
+      <div class="col-lg-4 col-md-12 mb-4">
+  
+        <!-- Card -->
+        <div class="card card-image" style="background-image: url('https://mdbootstrap.com/img/Photos/Others/pricing-table%20(6).jpg');">
+  
+          <!--Pricing card-->
+          <div class="text-white text-center pricing-card d-flex align-items-center rgba-stylish-strong py-3 px-3">
+  
+            <!--Content-->
+            <div class="card-body">
+                <h2 class="pb-3 font-weight-bold">Technologies</h2>
+                <p align="justify">{{post.technologies}}</p>
+        
+            </div>
+  
+          </div>
+          <!--Pricing card-->
+        </div>
+      </div>
+      <!--Grid column-->
+  
+    </div>
+    <!--Grid row-->
+  
+  </section>
+          
+            </div>
+          </div>
+      <hr>
+      <h3 class="text-center">Comments</h3>
+    </div>
+                
+                
+    {% endfor %}
+    <div class="col-md-2"></div>
+        <div class="col-md-4">
+            
+        </div>
+    </div>
+    {% if comments %}
+	<div class="row text-center">
+			{% for comment in comments %}
+				<div class="col-md-4">
+<!-- Card -->
+<div class="card card-image" style="background-image: url();">
+
+  <!-- Content -->
+  <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4">
+    <div>
+      <h3 class="card-title pt-2">{{ comment.comment}}</h3>
+        <h5>By: {{comment.user.username}}</h5>
+    </div>
+  </div>
+
+</div>
+		<hr>
+					</div>
+			{% endfor %}
+		</div>
+			{% else %}
+
+			<h3>No comments</h3>
+			{%endif%}
+</div>
+
+{% endblock %}
