@@ -1,7 +1,7 @@
 from flask_sqlalchemy import SQLAlchemy
 from app import create_app,db
 from flask_script import Manager,Server
-from app.models import User,Quiz,Comment
+from app.models import User,Quiz, Answer
 from flask_migrate import Migrate, MigrateCommand
 
 # Creating app instance
@@ -24,7 +24,7 @@ def test():
 
 @manager.shell
 def make_shell_context():
-    return dict(app = app,db = db,User = User,Quiz = Quiz ,Comment=Comment)
+    return dict(app = app,db = db,User = User,Quiz = Quiz ,Answer=Answer)
 
 
 
