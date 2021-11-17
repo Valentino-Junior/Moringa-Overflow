@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+<!-- Styles block -->
+
+{% block styles%}
+    {{ super() }}
+    <link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:700i" rel="stylesheet">
+{% endblock %}
+
+<!-- Content block -->
+{% block content %}
+<div class="card card-image" style="background-image: url(https://scontent.fmba5-1.fna.fbcdn.net/v/t1.18169-9/10710615_512708608864666_6379526937469666187_n.png?_nc_cat=105&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=aBy2Po9xN8QAX84o8qd&_nc_oc=AQk9nMchgLQ18Xcd-J35Yzx6C__Q8wVqdvMzlxiOq1EBc2G8IzwxTthMR6R1vvCpXyI&_nc_ht=scontent.fmba5-1.fna&oh=9b07c862e7350fcd442711b65cdeff0c&oe=61B9C3DB); background-size: 100% 100%; ">
+
+
+
+  <!-- Content -->
+  <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4">
+    <div>
+      <h1 style="font-size:100px;font-family: 'Montserrat', sans-serif; margin-bottom:3%">Moringa-Overflow!</h1>
+    <p style="font-size:18px"> HAVE YOU EVER THOUGHT O F HOW THE WORLD WOULD LOOK LIKE IF EVERY NICE IMAGINATION YOU HAVE EVER HAD WOULD BE BROUGHT TO REALITY. FOR EXAMPLE HUMANS HAVING WINGS TO FLY. WE, THE CODIT, BELIEVE THAT EVERY PROBLEM HAS A SOLUTION OR  EVERY VARIABLE HAS A VALUE AND THE VARIABLES HERE ARE THE IMAGINATIONS.</p>
+    <p style="font-size:18px"> CONVERT THE IMAGINATION TO REALITY.</p>
+    <a style="margin-bottom:12.4%" class="btn btn-green darken-2" href="/" ><i class="fas fa-clone left"></i>Back Home</a>
+
+    </div>
+  </div>
+
+</div>
+
+<!-- Footer -->
+<footer class="page-footer font-small light-green darken-2">
+
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3">© 2021 Copyright: Moringa-Overflow</a>
+  </div>
+  <!-- Copyright -->
+
+</footer>
+<!-- Footer -->
+
+  {% endblock %}
