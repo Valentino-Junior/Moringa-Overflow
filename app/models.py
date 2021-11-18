@@ -25,17 +25,17 @@ class Quiz(db.Model):
     user_id = db.Column(db.Integer,db.ForeignKey("users.id"),  nullable=False)
     
 
-    def save_pitch(self):
+    def save_post(self):
         db.session.add(self)
         db.session.commit()
 
     @classmethod
-    def get_pitches(cls,id):
-        pitches = Quiz.query.order_by(pitch_id=id).desc().all()
-        return pitches
+    def get_posts(cls,id):
+        posts = Quiz.query.order_by(post_id=id).desc().all()
+        return posts
     
     def __repr__(self):
-        return f"Pitch {self.title}','{self.pitched_p}')"
+        return f"Post {self.title}','{self.post_p}')"
 
 
 class Comment(db.Model):

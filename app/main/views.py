@@ -2,7 +2,7 @@ from flask import render_template, request, redirect, url_for, abort
 from flask_login import login_required, current_user
 from . import main
 from .forms import QuizForm, AnswerForm
-from ..models import Quiz, Comment, Quiz, Star
+from ..models import Quiz, Comment, Star
 from .. import db
 import markdown2
 
@@ -41,7 +41,7 @@ def post(id):
     posts = Quiz.query.filter_by(id=id)
     comments = Comment.query.filter_by(post_id=id).all()
 
-    return render_template('post.html',posts = posts,comments = comments)
+    return render_template('posts.html',posts = posts,comments = comments)
 
 @main.route('/post/new', methods=['GET', 'POST'])
 @login_required
@@ -52,7 +52,7 @@ def new_post():
         description = form.description.data
 
 
-        new_post = Quiz(title=title, description=description,  user_p=current_user._get_current_object().id)
+        new_post = Quiz(title=title, description=description,  user_id=current_user._get_current_object().id)
         new_post.save_post()
         
         posts = Quiz.query.order_by(Quiz.posted_p.desc()).all()
@@ -71,13 +71,13 @@ def new_comment(post_id):
         comment = form.comment.data
          
         # Updated comment instance
-        new_comment = Comment(comment=comment,user_c=current_user._get_current_object().id, post_id=post_id)
+        new_comment = Comment(comment=comment,user_id=current_user._get_current_object().id, quiz_id=post_id)
 
         # save comment method
         new_comment.save_comment()
         return redirect(url_for('.new_comment',post_id = post_id ))
 
-    all_comments = Comment.query.filter_by(post_id=post_id).all()
+    all_comments = Comment.query.filter_by(quiz_id=post_id).all()
     return render_template('comment.html', form=form, comments=all_comments, post=post)
 
 @main.route('/post/star/<int:post_id>/star', methods=['GET', 'POST'])

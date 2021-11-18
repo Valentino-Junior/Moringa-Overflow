@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% import 'bootstrap/wtf.html' as wtf %}
+{% block content %}
+<div class="container">
+    <div class="col-md-7">
+        {{wtf.quick_form(form)}}
+    </div>
+    <div class="col-md-4"></div>
+</div>
+<br>
+<hr>
+<div>
+    <h3>Comments for {{post.title}}</h3>
+</div>
+{% if comments %}
+<div class="row text-center">
+    {% for comment in comments %}
+    <div class="col-md-6">
+        <!-- Card -->
+            <!-- Content -->
+            <div class="text-white m-4 d-flex align-items-center rgba-black-strong py-5 px-4">
+                <div>
+                    <p class="card-title pt-2">{{ comment.comment}}</p>
+                    <h5 class="light-green-text">~ {{comment.comments.username}}</h5>
+                </div>
+            </div>
+        <hr>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<h3>No comments</h3>
+{%endif%}
+</div>
+<!-- Footer -->
+<footer class="page-footer font-small light-green darken-2">
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3">© 2021 Copyright: Moringa-Overflow
+    </div>
+    <!-- Copyright -->
+</footer>
+<!-- Footer -->
+{% endblock %}

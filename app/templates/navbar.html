@@ -18,29 +18,22 @@
         <li class="nav-item">
             <a class="nav-link" href="/">Home</a>
         </li>
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false">Select Category</a>
-            <div class="dropdown-menu dropdown-primary " aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item"  href="/posts/html">HTML</a>
-              <a class="dropdown-item"  href="/posts/css">CSS</a>
-              <a class="dropdown-item"  href="/posts/bootstrap">Bootstrap</a>
-              <a class="dropdown-item"  href="/posts/javascript">JavaScript</a>
-              <a class="dropdown-item"  href="/posts/jquery">JQuery</a>
-              <a class="dropdown-item"  href="/posts/angular">Angular</a>
-              <a class="dropdown-item"  href="/posts/Python-Flask">Python-Flask</a>
-              <a class="dropdown-item"  href="/posts/Python-Django">Python-Django</a>
-              <a class="dropdown-item"  href="/posts/Java-Spark">Java-Spark</a>
-              <a class="dropdown-item"  href="/posts/Android">Android</a>
-              <a class="dropdown-item"  href="/posts/c">C</a>
-              <a class="dropdown-item"  href="/posts/c++">C++</a>
-              <a class="dropdown-item"  href="/posts/others">Other postss</a>
-            </div>
+        <li class="nav-item">
+          <a class="nav-link" href="{{url_for('main.posts',language=language)}}">Posts
+          </a>
+      </li>
+         
+
+
+          <li class="nav-item">
+
+          <a class="nav-link" href="{{url_for('main.new_post')}}"><b>Post Question</b></a>
+
           </li>
           <li class="nav-item">
-              <a class="nav-link" href="/about">About
-              </a>
-          </li>
+            <a class="nav-link" href="/about">About
+            </a>
+        </li>
       </ul>
     
 
