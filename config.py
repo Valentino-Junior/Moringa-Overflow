@@ -1,4 +1,5 @@
 import os
+
 class Config:
     SECRET_KEY = os.environ.get('SECRET_KEY')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
@@ -24,6 +25,18 @@ class ProdConfig(Config):
     pass
 class DevConfig(Config):
     SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://access:access@localhost/moringa'
+
+
+class Config:
+    pass
+
+class ProdConfig(Config):
+    pass
+   
+
+class DevConfig(Config):
+    SECRET_KEY = 'This_is_my_secret'
+
     DEBUG = True
 config_options = {
     'development': DevConfig,
