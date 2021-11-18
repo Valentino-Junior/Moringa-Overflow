@@ -1,8 +1,8 @@
 from flask import (render_template, redirect, url_for,flash, request)
-from flask_login import login_user, logout_user, login_required
+from flask_login import login_user, logout_user, login_required, current_user
 from . import auth
 from ..models import User
-from .forms import RegistrationForm, LoginForm
+from .forms import RegistrationForm, LoginForm, UpdateAccountForm
 from .. import db
 # from ..email import mail_message
 
@@ -12,13 +12,11 @@ def register():
     '''Function to register the user and commit it to the db'''
     signup_form = RegistrationForm()
     if signup_form.validate_on_submit():
-        user = User(first_name = signup_form.first_name.data,
-                    last_name = signup_form.last_name.data,  
-                    username = signup_form.username.data, 
+        user = User(username = signup_form.username.data, 
                     email = signup_form.email.data,
                     password = signup_form.password.data)
-        #db.session.add(user)
-        #db.session.commit()
+        db.session.add(user)
+        db.session.commit()
 
         # mail_message("Welcome to 60 seconds",   "email/welcome", user.email, user = user)
         
@@ -46,3 +44,22 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for("main.index"))
+
+@auth.route("/account", methods=['GET', 'POST'])
+@login_required
+def account():
+    form = UpdateAccountForm()
+    if form.validate_on_submit():
+        # if form.picture.data:
+            # picture_file = save_picture(form.picture.data)
+            # current_user.image_file = picture_file
+        current_user.username = form.username.data
+        current_user.email = form.email.data
+        db.session.commit()
+        flash('Your account has been updated!', 'success')
+        return redirect(url_for('auth.account'))
+    elif request.method == 'GET':
+        form.username.data = current_user.username
+        form.email.data = current_user.email
+    # image_file = url_for('static', filename='profile_pics/' + current_user.image_file)
+    return render_template('account.html', title='Account', form=form)

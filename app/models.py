@@ -18,6 +18,7 @@ class Quiz(db.Model):
     id = db.Column(db.Integer,primary_key = True)
     title = db.Column(db.String)
     description = db.Column(db.String)
+    language = db.Column(db.String)
     comments = db.relationship('Comment', backref='quizes', lazy='dynamic')
     stars = db.relationship('Star', backref='quizes', lazy='dynamic')
     posted_p = db.Column(db.DateTime,default=datetime.utcnow)
@@ -80,9 +81,24 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(120), unique=True, nullable=False)
     image_file = db.Column(db.String(20), nullable=False, default='default.jpg')
     password = db.Column(db.String(60), nullable=False)
+    pass_secure = db.Column(db.String(255))
     Quizes = db.relationship('Quiz', backref='quizes', lazy='dynamic')
     comments = db.relationship('Comment', backref='comments', lazy='dynamic')
     stars = db.relationship('Star', backref='users', lazy='dynamic')
+
+    @property
+    def password(self):
+        raise AttributeError('You cannot read the password attribute')
+
+    @password.setter
+    def password(self, password):
+        self.pass_secure = generate_password_hash(password)
+
+    def verify_password(self, password):
+        return check_password_hash(self.pass_secure, password)
+
+    def __repr__(self):
+        return f'User {self.username}'
 
 
     def get_reset_token(self, expires_sec=1800):

@@ -24,13 +24,13 @@ def about():
     title = 'About - Welcome to Moringa Post'
     return render_template('about.html', title = title)
 
-@main.route('/posts/<cohort>')
-def posts(cohort):
+@main.route('/posts/<language>')
+def posts(language):
     '''
     View root page function that returns the index page and its data
     '''
-    posts = Quiz.query.filter_by(cohort=cohort).order_by(Quiz.posted_p.desc()).all()
-    return render_template('posts.html', posts=posts,cohort=cohort)
+    posts = Quiz.query.filter_by(language=language).order_by(Quiz.posted_p.desc()).all()
+    return render_template('posts.html', posts=posts,language=language)
 
 @main.route('/post/<int:id>')
 def post(id):
