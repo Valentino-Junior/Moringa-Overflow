@@ -133,18 +133,18 @@ class Star(db.Model):
         db.session.commit()
 
     def add_stars(cls, id):
-        star_pitch = Star(pitch_id=id)
+        star_pitch = Star(quiz_id=id)
         star_pitch.save_stars()
 
     @classmethod
     def get_stars(cls, id):
-        star = Star.query.filter_by(pitch_id=id).all()
+        star = Star.query.filter_by(quiz_id=id).all()
         return star
 
     @classmethod
-    def get_all_stars(cls, pitch_id):
+    def get_all_stars(cls, quiz_id):
         stars = Star.query.order_by('id').all()
         return stars
 
     def __repr__(self):
-        return f'{self.user_id}:{self.pitch_id}'
+        return f'{self.user_id}:{self.quiz_id}'

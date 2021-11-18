@@ -7,7 +7,7 @@
       <div class="card-body">
         <h5 class="card-title">{{post.title}}</h5>
         <!-- <h6>{{post.title}}</h6> -->
-        <p class="card-text">{{post.description|truncate(120)}}</p>
+        <p class="card-text">{{post.description|truncate(800)}}</p>
         <a href="/post/{{post.id}}" class="btn btn-light-green darken-1">
           <p>More <i class="fas fa-angle-double-right"></i></p>
         </a>
@@ -19,17 +19,5 @@
     </div>
   </div>
   {% endfor %}
-</div>
-
-
-
-<!-- Footer -->
-<footer class="page-footer font-small light-green darken-2">
-  <!-- Copyright -->
-  <div class="footer-copyright text-center py-3">© 2021 Copyright: Moringa-Overflow</a>
-  </div>
-  <!-- Copyright -->
-</footer>
-<!-- Footer -->
 </div>
 {% endblock %}

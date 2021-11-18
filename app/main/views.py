@@ -24,13 +24,22 @@ def about():
     title = 'About - Welcome to Moringa Post'
     return render_template('about.html', title = title)
 
-@main.route('/posts/<language>')
-def posts(language):
-    '''
-    View root page function that returns the index page and its data
-    '''
-    posts = Quiz.query.filter_by(language=language).order_by(Quiz.posted_p.desc()).all()
-    return render_template('posts.html', posts=posts,language=language)
+# @main.route('/posts/<language>')
+# def posts(language):
+#     '''
+#     View root page function that returns the index page and its data
+#     '''
+#     posts = Quiz.query.filter_by(language=language).order_by(Quiz.posted_p.desc()).all()
+#     return render_template('all_posts.html', posts=posts,language=language)
+
+@main.route('/posts')
+def all_posts():
+    posts = Quiz.query.order_by(Quiz.posted_p.desc()).all()
+
+    title = 'Payoneer Blogger Posts'
+
+    return render_template('posts.html', title=title, posts=posts)
+
 
 @main.route('/post/<int:id>')
 def post(id):
@@ -39,7 +48,7 @@ def post(id):
     View movie page function that returns the post details page and its data
     '''
     posts = Quiz.query.filter_by(id=id)
-    comments = Comment.query.filter_by(post_id=id).all()
+    comments = Comment.query.filter_by(quiz_id=id).all()
 
     return render_template('posts.html',posts = posts,comments = comments)
 
@@ -85,13 +94,13 @@ def new_comment(post_id):
 def star(post_id):
     post = Quiz.query.get(post_id)
     user = current_user
-    post_stars = Star.query.filter_by(post_id=post_id)
+    post_stars = Star.query.filter_by(quiz_id=post_id)
     posts = Quiz.query.order_by(Quiz.posted_p.desc()).all()
 
-    if Star.query.filter(Star.user_id == user.id, Star.post_id == post_id).first():
+    if Star.query.filter(Star.user_id == user.id, Star.quiz_id == post_id).first():
         return render_template('posts.html', posts=posts)
 
-    new_star = Star(post_id=post_id, user=current_user)
+    new_star = Star(quiz_id=post_id, user_id=current_user)
     new_star.save_stars()
     
     return render_template('posts.html', posts=posts)
