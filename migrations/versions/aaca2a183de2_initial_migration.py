@@ -1,8 +1,8 @@
 """Initial Migration
 
-Revision ID: 695ee8b1e875
+Revision ID: aaca2a183de2
 Revises: 
-Create Date: 2021-11-18 06:47:38.965843
+Create Date: 2021-11-22 11:15:16.687977
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '695ee8b1e875'
+revision = 'aaca2a183de2'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -23,7 +23,7 @@ def upgrade():
     sa.Column('username', sa.String(length=20), nullable=False),
     sa.Column('email', sa.String(length=120), nullable=False),
     sa.Column('image_file', sa.String(length=20), nullable=False),
-    sa.Column('password', sa.String(length=60), nullable=False),
+    sa.Column('pass_secure', sa.String(length=255), nullable=True),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('email'),
     sa.UniqueConstraint('username')
@@ -32,6 +32,7 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('title', sa.String(), nullable=True),
     sa.Column('description', sa.String(), nullable=True),
+    sa.Column('language', sa.String(), nullable=True),
     sa.Column('posted_p', sa.DateTime(), nullable=True),
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
