@@ -60,3 +60,6 @@
 ## Proposed additional functions
 * editing the posts (prob & soln) and comments
 * verification of the posts by admin
+
+### preview
+![](app/static/img/moringa.png)
