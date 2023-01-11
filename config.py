@@ -1,8 +1,11 @@
 import os
+from dotenv import load_dotenv
+load_dotenv()
+
 class Config:
     SECRET_KEY = os.environ.get('SECRET_KEY')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    UPLOADED_PHOTOS_DEST = 'app/static/photos'
+    UPLOADED_PHOTOS_DEST = 'app/static/img/tasks'
     #  email configurations
     MAIL_SERVER = 'smtp.googlemail.com'
     MAIL_PORT = 587
@@ -23,7 +26,7 @@ class ProdConfig(Config):
         SQLALCHEMY_DATABASE_URI = SQLALCHEMY_DATABASE_URI.replace("postgres://", "postgresql://", 1)
     pass
 class DevConfig(Config):
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://cotech:new_password@localhost/moringamain'
+    SQLALCHEMY_DATABASE_URI =  os.environ.get("SQLALCHEMY_DATABASE_URI")
     DEBUG = True
 config_options = {
     'development': DevConfig,
