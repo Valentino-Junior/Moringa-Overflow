@@ -23,7 +23,7 @@ class ProdConfig(Config):
         SQLALCHEMY_DATABASE_URI = SQLALCHEMY_DATABASE_URI.replace("postgres://", "postgresql://", 1)
     pass
 class DevConfig(Config):
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://access:access@localhost/moringamain'
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://cotech:new_password@localhost/moringamain'
     DEBUG = True
 config_options = {
     'development': DevConfig,
